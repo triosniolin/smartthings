@@ -45,7 +45,9 @@ def page1() {
         section("Device(s) to control") {
 		input "colors", "capability.colorControl", 
                     multiple: true, 
-                    title: "Slave Color bulb(s)..."
+                    title: "Slave Color bulb(s)...",
+		    		required: false,
+		    		hideWhenEmpty: true
                 input "slaves", "capability.colorTemperature", 
                     multiple: true, 
                     title: "Slave Temp bulb(s)...", 
