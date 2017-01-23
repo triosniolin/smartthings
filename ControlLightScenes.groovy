@@ -42,10 +42,13 @@ def page1() {
                 required: true,
                 submitOnChange: true
         }
-        section("Device to control") {
+        section("Device(s) to control") {
+		input "colors", "capability.colorControl", 
+                    multiple: true, 
+                    title: "Slave Color bulb(s)..."
                 input "slaves", "capability.colorTemperature", 
                     multiple: true, 
-                    title: "Slave Color Temp bulb(s)...", 
+                    title: "Slave Temp bulb(s)...", 
                     required: true
         }
 
@@ -56,49 +59,81 @@ def page2() {
     def i = 1
 	if (scenes > i) {
 	dynamicPage(name: "page2", title: "Select Scene $i", nextPage: "page3") {
-            section("Switch $i") {
+            section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
-            section("Switch $i Color Temp") {
+            section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
-                    title: "Switch $i Color Temp (Kelvin)", 
+                    title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
                     range: "2700..6500",
-                    defaultValue: "6000",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
-            section("Switch $i Dim Level") {
+            section("Scene $i Level") {
                 input "Dim$i", "number", 
-                    title: "Switch $i Dim Level", 
+                    title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
-                    defaultValue: "25",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
+		if (colors) {
+			section("Scene $i Hue") {
+			input "Hue$i", "number", 
+			    title: "Scene $i Hue (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+			section("Scene $i Saturation") {
+			input "Sat$i", "number", 
+			    title: "Scene $i Saturation (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+		}
         }
    } else {
     dynamicPage(name: "page2", title: "Select Scene $i", install:true) {
-            section("Switch $i") {
+            section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
-            section("Switch $i Color Temp") {
+            section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
-                    title: "Switch $i Color Temp (Kelvin)", 
+                    title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
                     range: "2700..6500",
-                    defaultValue: "6000",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
-            section("Switch $i Dim Level") {
+            section("Scene $i Level") {
                 input "Dim$i", "number", 
-                    title: "Switch $i Dim Level", 
+                    title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
-                    defaultValue: "25",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
+	    if (colors) {
+			section("Scene $i Hue") {
+			input "Hue$i", "number", 
+			    title: "Scene $i Hue (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+			section("Scene $i Saturation") {
+			input "Sat$i", "number", 
+			    title: "Scene $i Saturation (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+		}
         }
     }
 }
@@ -106,49 +141,81 @@ def page3() {
 	def i = 2
 if (scenes > i) {
 	dynamicPage(name: "page3", title: "Select Scene $i", nextPage: "page4") {
-            section("Switch $i") {
+            section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
-            section("Switch $i Color Temp") {
+            section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
-                    title: "Switch $i Color Temp (Kelvin)", 
+                    title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
                     range: "2700..6500",
-                    defaultValue: "6000",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
-            section("Switch $i Dim Level") {
+            section("Scene $i Level") {
                 input "Dim$i", "number", 
-                    title: "Switch $i Dim Level", 
+                    title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
-                    defaultValue: "25",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
+		if (colors) {
+			section("Scene $i Hue") {
+			input "Hue$i", "number", 
+			    title: "Scene $i Hue (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+			section("Scene $i Saturation") {
+			input "Sat$i", "number", 
+			    title: "Scene $i Saturation (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+		}
         }
    } else {
     dynamicPage(name: "page3", title: "Select Scene $i", install:true) {
-            section("Switch $i") {
+            section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
-            section("Switch $i Color Temp") {
+            section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
-                    title: "Switch $i Color Temp (Kelvin)", 
+                    title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
                     range: "2700..6500",
-                    defaultValue: "6000",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
-            section("Switch $i Dim Level") {
+            section("Scene $i Level") {
                 input "Dim$i", "number", 
-                    title: "Switch $i Dim Level", 
+                    title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
-                    defaultValue: "25",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
+	    if (colors) {
+			section("Scene $i Hue") {
+			input "Hue$i", "number", 
+			    title: "Scene $i Hue (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+			section("Scene $i Saturation") {
+			input "Sat$i", "number", 
+			    title: "Scene $i Saturation (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+		}
         }
     }
 }
@@ -156,49 +223,81 @@ def page4() {
 	def i = 3
 if (scenes > i) {
 	dynamicPage(name: "page4", title: "Select Scene $i", nextPage: "page5") {
-            section("Switch $i") {
+            section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
-            section("Switch $i Color Temp") {
+            section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
-                    title: "Switch $i Color Temp (Kelvin)", 
+                    title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
                     range: "2700..6500",
-                    defaultValue: "6000",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
-            section("Switch $i Dim Level") {
+            section("Scene $i Level") {
                 input "Dim$i", "number", 
-                    title: "Switch $i Dim Level", 
+                    title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
-                    defaultValue: "25",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
+		if (colors) {
+			section("Scene $i Hue") {
+			input "Hue$i", "number", 
+			    title: "Scene $i Hue (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+			section("Scene $i Saturation") {
+			input "Sat$i", "number", 
+			    title: "Scene $i Saturation (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+		}
         }
    } else {
         dynamicPage(name: "page4", title: "Select Scene $i", install:true) {
-            section("Switch $i") {
+            section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
-            section("Switch $i Color Temp") {
+            section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
-                    title: "Switch $i Color Temp (Kelvin)", 
+                    title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
                     range: "2700..6500",
-                    defaultValue: "6000",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
-            section("Switch $i Dim Level") {
+            section("Scene $i Level") {
                 input "Dim$i", "number", 
-                    title: "Switch $i Dim Level", 
+                    title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
-                    defaultValue: "25",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
+		if (colors) {
+			section("Scene $i Hue") {
+			input "Hue$i", "number", 
+			    title: "Scene $i Hue (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+			section("Scene $i Saturation") {
+			input "Sat$i", "number", 
+			    title: "Scene $i Saturation (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+		}
         }
     }
 }
@@ -206,75 +305,123 @@ def page5() {
 	def i = 4
 	if (scenes > i) {
         dynamicPage(name: "page5", title: "Select Scene $i", nextPage: "page6") {
-            section("Switch $i") {
+            section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
-            section("Switch $i Color Temp") {
+            section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
-                    title: "Switch $i Color Temp (Kelvin)", 
+                    title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
                     range: "2700..6500",
-                    defaultValue: "6000",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
-            section("Switch $i Dim Level") {
+            section("Scene $i Level") {
                 input "Dim$i", "number", 
-                    title: "Switch $i Dim Level", 
+                    title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
-                    defaultValue: "25",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
+		if (colors) {
+			section("Scene $i Hue") {
+			input "Hue$i", "number", 
+			    title: "Scene $i Hue (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+			section("Scene $i Saturation") {
+			input "Sat$i", "number", 
+			    title: "Scene $i Saturation (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+		}
         }
        } else {
         dynamicPage(name: "page5", title: "Select Scene $i", install:true) {
-                section("Switch $i") {
+                section("Scene $i") {
                     input "switch$i", "capability.switch", 
                         multiple: false, 
                         title: "Switch To Enable Scene $i", 
                         required: true
                 }
-                section("Switch $i Color Temp") {
+                section("Scene $i Color Temp") {
                     input "Temp$i", "number", 
-                        title: "Switch $i Color Temp (Kelvin)", 
+                        title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
                         range: "2700..6500",
-                        defaultValue: "6000",
-                        required: true
+                        defaultValue: "",
+					required: false
                 }
-                section("Switch $i Dim Level") {
+                section("Scene $i Level") {
                     input "Dim$i", "number", 
-                        title: "Switch $i Dim Level", 
+                        title: "Scene $i Dim Level (0-100%)", 
                         range: "0..100",
-                        defaultValue: "25",
-                        required: true
+                        defaultValue: "",
+					required: false
                 }
+		if (colors) {
+			section("Scene $i Hue") {
+			input "Hue$i", "number", 
+			    title: "Scene $i Hue (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+			section("Scene $i Saturation") {
+			input "Sat$i", "number", 
+			    title: "Scene $i Saturation (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+		}
             }
     }
 }
 def page6() {
 	def i = 5
         dynamicPage(name: "page6", title: "Select Scene $i", install:true) {
-            section("Switch $i") {
+            section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
-            section("Switch $i Color Temp") {
+            section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
-                    title: "Switch $i Color Temp (Kelvin)", 
+                    title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
                     range: "2700..6500",
-                    defaultValue: "6000",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
-            section("Switch $i Dim Level") {
+            section("Scene $i Level") {
                 input "Dim$i", "number", 
-                    title: "Switch $i Dim Level", 
+                    title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
-                    defaultValue: "25",
-                    required: true
+                    defaultValue: "",
+					required: false
             }
+		if (colors) {
+			section("Scene $i Hue") {
+			input "Hue$i", "number", 
+			    title: "Scene $i Hue (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+			section("Scene $i Saturation") {
+			input "Sat$i", "number", 
+			    title: "Scene $i Saturation (0-100)", 
+			    range: "0..100",
+			    defaultValue: "",
+					required: false
+			}
+		}
         
     }
 }
@@ -321,37 +468,78 @@ subscribe (switch5, "switch.on", switch5Handler)
 
 
 def switch1Handler(evt){	
-    def Level1 = Dim1.toInteger()
-    def Color1 = Temp1.toInteger()
+
 	log.info "switch1Handler Event: ${evt.value}"
-	slaves?.setColorTemperature(Color1)
-    slaves?.setLevel(Level1)
+	if (colors) {
+		
+		if (Temp1) { slaves?.setColorTemperature(Temp1)
+			     colors?.setColorTemperature(Temp1) }
+		if (Dim1) { slaves?.setLevel(Dim1) 
+			    colors?.setLevel(Dim1) }
+		if (Hue1) { colors?.setHue(Hue1) }
+		if (Sat1) { colors?.setSaturation(Sat1) }
+	} else {
+		if (Temp1) { slaves?.setColorTemperature(Temp1) }
+		if (Dim1) { slaves?.setLevel(Dim1) }
+	}
 }
 def switch2Handler(evt){	
-    def Level2 = Dim2.toInteger()
-    def Color2 = Temp2.toInteger()
 	log.info "switch2Handler Event: ${evt.value}"
-	slaves?.setColorTemperature(Color2)
-    slaves?.setLevel(Level2)
+	if (colors) {
+		
+		if (Temp2) { slaves?.setColorTemperature(Temp2)
+			     colors?.setColorTemperature(Temp2) }
+		if (Dim2) { slaves?.setLevel(Dim2) 
+			    colors?.setLevel(Dim2) }
+		if (Hue2) { colors?.setHue(Hue2) }
+		if (Sat2) { colors?.setSaturation(Sat2) }
+	} else {
+		if (Temp2) { slaves?.setColorTemperature(Temp2) }
+		if (Dim2) { slaves?.setLevel(Dim2) }
+	}
 }
 def switch3Handler(evt){	
-    def Level3 = Dim3.toInteger()
-    def Color3 = Temp3.toInteger()
 	log.info "switch3Handler Event: ${evt.value}"
-	slaves?.setColorTemperature(Color3)
-    slaves?.setLevel(Level3)
+	if (colors) {
+		
+		if (Temp3) { slaves?.setColorTemperature(Temp3)
+			     colors?.setColorTemperature(Temp3) }
+		if (Dim3) { slaves?.setLevel(Dim3) 
+			    colors?.setLevel(Dim3) }
+		if (Hue3) { colors?.setHue(Hue3) }
+		if (Sat3) { colors?.setSaturation(Sat3) }
+	} else {
+		if (Temp3) { slaves?.setColorTemperature(Temp3) }
+		if (Dim3) { slaves?.setLevel(Dim3) }
+	}
 }
 def switch4Handler(evt){	
-    def Level4 = Dim4.toInteger()
-    def Color4 = Temp4.toInteger()
 	log.info "switch4Handler Event: ${evt.value}"
-	slaves?.setColorTemperature(Color4)
-    slaves?.setLevel(Level4)
+	if (colors) {
+		
+		if (Temp4) { slaves?.setColorTemperature(Temp4)
+			     colors?.setColorTemperature(Temp4) }
+		if (Dim4) { slaves?.setLevel(Dim4) 
+			    colors?.setLevel(Dim4) }
+		if (Hue4) { colors?.setHue(Hue4) }
+		if (Sat4) { colors?.setSaturation(Sat4) }
+	} else {
+		if (Temp4) { slaves?.setColorTemperature(Temp4) }
+		if (Dim4) { slaves?.setLevel(Dim4) }
+	}
 }
 def switch5Handler(evt){	
-    def Level5 = Dim5.toInteger()
-    def Color5 = Temp5.toInteger()
 	log.info "switch5Handler Event: ${evt.value}"
-	slaves?.setColorTemperature(Color5)
-    slaves?.setLevel(Level5)
+	if (colors) {
+		
+		if (Temp5) { slaves?.setColorTemperature(Temp5)
+			     colors?.setColorTemperature(Temp5) }
+		if (Dim5) { slaves?.setLevel(Dim5) 
+			    colors?.setLevel(Dim5) }
+		if (Hue5) { colors?.setHue(Hue5) }
+		if (Sat5) { colors?.setSaturation(Sat5) }
+	} else {
+		if (Temp5) { slaves?.setColorTemperature(Temp5) }
+		if (Dim5) { slaves?.setLevel(Dim5) }
+	}
 }
