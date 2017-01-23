@@ -45,7 +45,7 @@ def page1() {
         section("Device to control") {
                 input "slaves", "capability.colorTemperature", 
                     multiple: true, 
-                    title: "Slave Color Temp bulb(s)...", 
+                    title: "Slave Color/Temp bulb(s)...", 
                     required: true
         }
 
