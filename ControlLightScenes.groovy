@@ -25,12 +25,13 @@ definition(
 
 
 preferences {
-    page(name: "page1")
+	page(name: "page1")
 	page(name: "page2")
 	page(name: "page3")
 	page(name: "page4")
-    page(name: "page5")
-    page(name: "page6")
+	page(name: "page5")
+	page(name: "page6")
+	page(name: "lastpage")
 }
 def page1() {
 	dynamicPage(name: "page1", title: "Select devices:", nextPage: "page2", uninstall:true) {
@@ -99,7 +100,7 @@ def page2() {
 		}
         }
    } else {
-    dynamicPage(name: "page2", title: "Select Scene $i", install:true) {
+    dynamicPage(name: "page2", title: "Select Scene $i", nextPage: "lastpage") {
             section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
@@ -181,7 +182,7 @@ if (scenes > i) {
 		}
         }
    } else {
-    dynamicPage(name: "page3", title: "Select Scene $i", install:true) {
+    dynamicPage(name: "page3", title: "Select Scene $i", nextPage: "lastpage") {
             section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
@@ -263,7 +264,7 @@ if (scenes > i) {
 		}
         }
    } else {
-        dynamicPage(name: "page4", title: "Select Scene $i", install:true) {
+        dynamicPage(name: "page4", title: "Select Scene $i", nextPage: "lastpage") {
             section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
@@ -345,7 +346,7 @@ def page5() {
 		}
         }
        } else {
-        dynamicPage(name: "page5", title: "Select Scene $i", install:true) {
+        dynamicPage(name: "page5", title: "Select Scene $i", nextPage: "lastpage") {
                 section("Scene $i") {
                     input "switch$i", "capability.switch", 
                         multiple: false, 
@@ -387,7 +388,7 @@ def page5() {
 }
 def page6() {
 	def i = 5
-        dynamicPage(name: "page6", title: "Select Scene $i", install:true) {
+        dynamicPage(name: "page6", title: "Select Scene $i", nextPage: "lastpage") {
             section("Scene $i") {
                 input "switch$i", "capability.switch", 
                     multiple: false, 
@@ -426,6 +427,14 @@ def page6() {
 		}
         
     }
+}
+def lastpage() {
+	dynamicPage(name: "lastpage", title: "Name app and configure modes", install: true, uninstall: true) {
+        section([mobileOnly:true]) {
+            label title: "Assign a name", required: false
+            mode title: "Set for specific mode(s)", required: false
+        }
+	}
 }
 def installed()
 {
