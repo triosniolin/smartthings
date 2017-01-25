@@ -472,14 +472,16 @@ subscribe (switch5, "switch.on", switch5Handler)
 def switch1Handler(evt){	
 
 	log.info "switch1Handler Event: ${evt.value}"
-	if (colors) {
-		
-		if (Temp1) { slaves?.setColorTemperature(Temp1)
+	if (colors) {		
+		if (Hue1 || Sat1) { 
+			if (Hue1) { colors?.setHue(Hue1) }
+			if (Sat1) { colors?.setSaturation(Sat1) }
+		} else {
+			if (Temp1) { slaves?.setColorTemperature(Temp1) 
 			     colors?.setColorTemperature(Temp1) }
+		}
 		if (Dim1) { slaves?.setLevel(Dim1) 
 			    colors?.setLevel(Dim1) }
-		if (Hue1) { colors?.setHue(Hue1) }
-		if (Sat1) { colors?.setSaturation(Sat1) }
 	} else {
 		if (Temp1) { slaves?.setColorTemperature(Temp1) }
 		if (Dim1) { slaves?.setLevel(Dim1) }
@@ -487,14 +489,16 @@ def switch1Handler(evt){
 }
 def switch2Handler(evt){	
 	log.info "switch2Handler Event: ${evt.value}"
-	if (colors) {
-		
-		if (Temp2) { slaves?.setColorTemperature(Temp2)
+	if (colors) {		
+		if (Hue2 || Sat2) { 
+			if (Hue2) { colors?.setHue(Hue2) }
+			if (Sat2) { colors?.setSaturation(Sat2) }
+		} else {
+			if (Temp2) { slaves?.setColorTemperature(Temp2) 
 			     colors?.setColorTemperature(Temp2) }
+		}
 		if (Dim2) { slaves?.setLevel(Dim2) 
 			    colors?.setLevel(Dim2) }
-		if (Hue2) { colors?.setHue(Hue2) }
-		if (Sat2) { colors?.setSaturation(Sat2) }
 	} else {
 		if (Temp2) { slaves?.setColorTemperature(Temp2) }
 		if (Dim2) { slaves?.setLevel(Dim2) }
@@ -502,14 +506,16 @@ def switch2Handler(evt){
 }
 def switch3Handler(evt){	
 	log.info "switch3Handler Event: ${evt.value}"
-	if (colors) {
-		
-		if (Temp3) { slaves?.setColorTemperature(Temp3)
+	if (colors) {		
+		if (Hue3 || Sat3) { 
+			if (Hue3) { colors?.setHue(Hue3) }
+			if (Sat3) { colors?.setSaturation(Sat3) }
+		} else {
+			if (Temp3) { slaves?.setColorTemperature(Temp3) 
 			     colors?.setColorTemperature(Temp3) }
+		}
 		if (Dim3) { slaves?.setLevel(Dim3) 
 			    colors?.setLevel(Dim3) }
-		if (Hue3) { colors?.setHue(Hue3) }
-		if (Sat3) { colors?.setSaturation(Sat3) }
 	} else {
 		if (Temp3) { slaves?.setColorTemperature(Temp3) }
 		if (Dim3) { slaves?.setLevel(Dim3) }
@@ -517,14 +523,16 @@ def switch3Handler(evt){
 }
 def switch4Handler(evt){	
 	log.info "switch4Handler Event: ${evt.value}"
-	if (colors) {
-		
-		if (Temp4) { slaves?.setColorTemperature(Temp4)
+	if (colors) {		
+		if (Hue4 || Sat4) { 
+			if (Hue4) { colors?.setHue(Hue4) }
+			if (Sat4) { colors?.setSaturation(Sat4) }
+		} else {
+			if (Temp4) { slaves?.setColorTemperature(Temp4) 
 			     colors?.setColorTemperature(Temp4) }
+		}
 		if (Dim4) { slaves?.setLevel(Dim4) 
 			    colors?.setLevel(Dim4) }
-		if (Hue4) { colors?.setHue(Hue4) }
-		if (Sat4) { colors?.setSaturation(Sat4) }
 	} else {
 		if (Temp4) { slaves?.setColorTemperature(Temp4) }
 		if (Dim4) { slaves?.setLevel(Dim4) }
@@ -532,14 +540,16 @@ def switch4Handler(evt){
 }
 def switch5Handler(evt){	
 	log.info "switch5Handler Event: ${evt.value}"
-	if (colors) {
-		
-		if (Temp5) { slaves?.setColorTemperature(Temp5)
+	if (colors) {		
+		if (Hue5 || Sat5) { 
+			if (Hue5) { colors?.setHue(Hue5) }
+			if (Sat5) { colors?.setSaturation(Sat5) }
+		} else {
+			if (Temp5) { slaves?.setColorTemperature(Temp5) 
 			     colors?.setColorTemperature(Temp5) }
+		}
 		if (Dim5) { slaves?.setLevel(Dim5) 
 			    colors?.setLevel(Dim5) }
-		if (Hue5) { colors?.setHue(Hue5) }
-		if (Sat5) { colors?.setSaturation(Sat5) }
 	} else {
 		if (Temp5) { slaves?.setColorTemperature(Temp5) }
 		if (Dim5) { slaves?.setLevel(Dim5) }
