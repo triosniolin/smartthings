@@ -476,6 +476,7 @@ def switch1Handler(evt){
 		if (Hue1 || Sat1) { 
 			if (Hue1) { colors?.setHue(Hue1) }
 			if (Sat1) { colors?.setSaturation(Sat1) }
+			if (Temp1) { slaves?.setColorTemperature(Temp1) }
 		} else {
 			if (Temp1) { slaves?.setColorTemperature(Temp1) 
 			     colors?.setColorTemperature(Temp1) }
@@ -493,6 +494,7 @@ def switch2Handler(evt){
 		if (Hue2 || Sat2) { 
 			if (Hue2) { colors?.setHue(Hue2) }
 			if (Sat2) { colors?.setSaturation(Sat2) }
+			if (Temp2) { slaves?.setColorTemperature(Temp2) }
 		} else {
 			if (Temp2) { slaves?.setColorTemperature(Temp2) 
 			     colors?.setColorTemperature(Temp2) }
@@ -510,6 +512,7 @@ def switch3Handler(evt){
 		if (Hue3 || Sat3) { 
 			if (Hue3) { colors?.setHue(Hue3) }
 			if (Sat3) { colors?.setSaturation(Sat3) }
+			if (Temp3) { slaves?.setColorTemperature(Temp3) }
 		} else {
 			if (Temp3) { slaves?.setColorTemperature(Temp3) 
 			     colors?.setColorTemperature(Temp3) }
@@ -527,6 +530,7 @@ def switch4Handler(evt){
 		if (Hue4 || Sat4) { 
 			if (Hue4) { colors?.setHue(Hue4) }
 			if (Sat4) { colors?.setSaturation(Sat4) }
+			if (Temp4) { slaves?.setColorTemperature(Temp4) }
 		} else {
 			if (Temp4) { slaves?.setColorTemperature(Temp4) 
 			     colors?.setColorTemperature(Temp4) }
@@ -544,6 +548,7 @@ def switch5Handler(evt){
 		if (Hue5 || Sat5) { 
 			if (Hue5) { colors?.setHue(Hue5) }
 			if (Sat5) { colors?.setSaturation(Sat5) }
+			if (Temp5) { slaves?.setColorTemperature(Temp5) }
 		} else {
 			if (Temp5) { slaves?.setColorTemperature(Temp5) 
 			     colors?.setColorTemperature(Temp5) }
