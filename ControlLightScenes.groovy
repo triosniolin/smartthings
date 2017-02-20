@@ -52,7 +52,13 @@ def page1() {
                 input "slaves", "capability.colorTemperature", 
                     multiple: true, 
                     title: "Slave Temp bulb(s)...", 
-                    required: true
+                    required: false,
+		    hideWhenEmpty: true
+		input "dimmers", "capability.switchLevel", 
+                    multiple: true, 
+                    title: "Slave dimmer switches...", 
+                    required: false,
+		    hideWhenEmpty: true
         }
 
     }
@@ -68,6 +74,7 @@ def page2() {
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
+            if (slaves) {
             section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
                     title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
@@ -75,12 +82,15 @@ def page2() {
                     defaultValue: "",
 					required: false
             }
+            }
+            if (dimmers) {
             section("Scene $i Level") {
                 input "Dim$i", "number", 
                     title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
                     defaultValue: "",
 					required: false
+            }
             }
 		if (colors) {
 			section("Scene $i Hue") {
@@ -107,6 +117,7 @@ def page2() {
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
+            if (slaves) {
             section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
                     title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
@@ -114,12 +125,15 @@ def page2() {
                     defaultValue: "",
 					required: false
             }
+            }
+            if (dimmers) {
             section("Scene $i Level") {
                 input "Dim$i", "number", 
                     title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
                     defaultValue: "",
 					required: false
+            }
             }
 	    if (colors) {
 			section("Scene $i Hue") {
@@ -150,6 +164,7 @@ if (scenes > i) {
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
+            if (slaves) {
             section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
                     title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
@@ -157,12 +172,15 @@ if (scenes > i) {
                     defaultValue: "",
 					required: false
             }
+            }
+            if (dimmers) {
             section("Scene $i Level") {
                 input "Dim$i", "number", 
                     title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
                     defaultValue: "",
 					required: false
+            }
             }
 		if (colors) {
 			section("Scene $i Hue") {
@@ -189,6 +207,7 @@ if (scenes > i) {
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
+            if (slaves) {
             section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
                     title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
@@ -196,12 +215,15 @@ if (scenes > i) {
                     defaultValue: "",
 					required: false
             }
+            }
+            if (dimmers) {
             section("Scene $i Level") {
                 input "Dim$i", "number", 
                     title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
                     defaultValue: "",
 					required: false
+            }
             }
 	    if (colors) {
 			section("Scene $i Hue") {
@@ -232,6 +254,7 @@ if (scenes > i) {
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
+            if (slaves) {
             section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
                     title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
@@ -239,12 +262,15 @@ if (scenes > i) {
                     defaultValue: "",
 					required: false
             }
+            }
+            if (dimmers) {
             section("Scene $i Level") {
                 input "Dim$i", "number", 
                     title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
                     defaultValue: "",
 					required: false
+            }
             }
 		if (colors) {
 			section("Scene $i Hue") {
@@ -271,6 +297,7 @@ if (scenes > i) {
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
+            if (slaves) {
             section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
                     title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
@@ -278,12 +305,15 @@ if (scenes > i) {
                     defaultValue: "",
 					required: false
             }
+            }
+            if (dimmers) {
             section("Scene $i Level") {
                 input "Dim$i", "number", 
                     title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
                     defaultValue: "",
 					required: false
+            }
             }
 		if (colors) {
 			section("Scene $i Hue") {
@@ -314,6 +344,7 @@ def page5() {
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
+            if (slaves) {
             section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
                     title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
@@ -321,12 +352,15 @@ def page5() {
                     defaultValue: "",
 					required: false
             }
+            }
+            if (dimmers) {
             section("Scene $i Level") {
                 input "Dim$i", "number", 
                     title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
                     defaultValue: "",
 					required: false
+            }
             }
 		if (colors) {
 			section("Scene $i Hue") {
@@ -353,20 +387,24 @@ def page5() {
                         title: "Switch To Enable Scene $i", 
                         required: true
                 }
-                section("Scene $i Color Temp") {
-                    input "Temp$i", "number", 
-                        title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
-                        range: "2700..6500",
-                        defaultValue: "",
+                if (slaves) {
+            section("Scene $i Color Temp") {
+                input "Temp$i", "number", 
+                    title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
+                    range: "2700..6500",
+                    defaultValue: "",
 					required: false
-                }
-                section("Scene $i Level") {
-                    input "Dim$i", "number", 
-                        title: "Scene $i Dim Level (0-100%)", 
-                        range: "0..100",
-                        defaultValue: "",
+            }
+            }
+            if (dimmers) {
+            section("Scene $i Level") {
+                input "Dim$i", "number", 
+                    title: "Scene $i Dim Level (0-100%)", 
+                    range: "0..100",
+                    defaultValue: "",
 					required: false
-                }
+            }
+            }
 		if (colors) {
 			section("Scene $i Hue") {
 			input "Hue$i", "number", 
@@ -395,6 +433,7 @@ def page6() {
                     title: "Switch To Enable Scene $i", 
                     required: true
             }
+            if (slaves) {
             section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
                     title: "Scene $i Color Temp (Kelvin) (2700-6500)", 
@@ -402,12 +441,15 @@ def page6() {
                     defaultValue: "",
 					required: false
             }
+            }
+            if (dimmers) {
             section("Scene $i Level") {
                 input "Dim$i", "number", 
                     title: "Scene $i Dim Level (0-100%)", 
                     range: "0..100",
                     defaultValue: "",
 					required: false
+            }
             }
 		if (colors) {
 			section("Scene $i Hue") {
@@ -488,16 +530,18 @@ def switch1Handler(evt){
 			if (Temp1) { slaves?.setColorTemperature(Temp1) }
 		} else {
 			if (Temp1) { slaves?.setColorTemperature(Temp1) 
-			     colors?.setColorTemperature(Temp1) }
+			      }
 		}
-		if (Dim1) { slaves?.setLevel(Dim1) 
-			    colors?.setLevel(Dim1) }
+		if (Dim1 != null) { 
+			    if (dimmers) {dimmers?.setLevel(Dim1)} }
 	} else {
 		if (Temp1) { slaves?.setColorTemperature(Temp1) }
-		if (Dim1) { slaves?.setLevel(Dim1) }
+		if (Dim1 != null) { if (dimmers) {dimmers?.setLevel(Dim1)} }
+			  
 	}
 }
 def switch2Handler(evt){	
+
 	log.info "switch2Handler Event: ${evt.value}"
 	if (colors) {		
 		if (Hue2 || Sat2) { 
@@ -506,16 +550,18 @@ def switch2Handler(evt){
 			if (Temp2) { slaves?.setColorTemperature(Temp2) }
 		} else {
 			if (Temp2) { slaves?.setColorTemperature(Temp2) 
-			     colors?.setColorTemperature(Temp2) }
+			      }
 		}
-		if (Dim2) { slaves?.setLevel(Dim2) 
-			    colors?.setLevel(Dim2) }
+		if (Dim2 != null) { 
+			    if (dimmers) {dimmers?.setLevel(Dim2)} }
 	} else {
 		if (Temp2) { slaves?.setColorTemperature(Temp2) }
-		if (Dim2) { slaves?.setLevel(Dim2) }
+		if (Dim2 != null) { if (dimmers) {dimmers?.setLevel(Dim2)} }
+			  
 	}
 }
 def switch3Handler(evt){	
+
 	log.info "switch3Handler Event: ${evt.value}"
 	if (colors) {		
 		if (Hue3 || Sat3) { 
@@ -524,16 +570,18 @@ def switch3Handler(evt){
 			if (Temp3) { slaves?.setColorTemperature(Temp3) }
 		} else {
 			if (Temp3) { slaves?.setColorTemperature(Temp3) 
-			     colors?.setColorTemperature(Temp3) }
+			      }
 		}
-		if (Dim3) { slaves?.setLevel(Dim3) 
-			    colors?.setLevel(Dim3) }
+		if (Dim3 != null) { 
+			    if (dimmers) {dimmers?.setLevel(Dim3)} }
 	} else {
 		if (Temp3) { slaves?.setColorTemperature(Temp3) }
-		if (Dim3) { slaves?.setLevel(Dim3) }
+		if (Dim3 != null) { if (dimmers) {dimmers?.setLevel(Dim3)} }
+			  
 	}
 }
 def switch4Handler(evt){	
+
 	log.info "switch4Handler Event: ${evt.value}"
 	if (colors) {		
 		if (Hue4 || Sat4) { 
@@ -542,16 +590,18 @@ def switch4Handler(evt){
 			if (Temp4) { slaves?.setColorTemperature(Temp4) }
 		} else {
 			if (Temp4) { slaves?.setColorTemperature(Temp4) 
-			     colors?.setColorTemperature(Temp4) }
+			      }
 		}
-		if (Dim4) { slaves?.setLevel(Dim4) 
-			    colors?.setLevel(Dim4) }
+		if (Dim4 != null) { 
+			    if (dimmers) {dimmers?.setLevel(Dim4)} }
 	} else {
 		if (Temp4) { slaves?.setColorTemperature(Temp4) }
-		if (Dim4) { slaves?.setLevel(Dim4) }
+		if (Dim4 != null) { if (dimmers) {dimmers?.setLevel(Dim4)} }
+			  
 	}
 }
 def switch5Handler(evt){	
+
 	log.info "switch5Handler Event: ${evt.value}"
 	if (colors) {		
 		if (Hue5 || Sat5) { 
@@ -560,12 +610,13 @@ def switch5Handler(evt){
 			if (Temp5) { slaves?.setColorTemperature(Temp5) }
 		} else {
 			if (Temp5) { slaves?.setColorTemperature(Temp5) 
-			     colors?.setColorTemperature(Temp5) }
+			      }
 		}
-		if (Dim5) { slaves?.setLevel(Dim5) 
-			    colors?.setLevel(Dim5) }
+		if (Dim5 != null) { 
+			    if (dimmers) {dimmers?.setLevel(Dim5)} }
 	} else {
 		if (Temp5) { slaves?.setColorTemperature(Temp5) }
-		if (Dim5) { slaves?.setLevel(Dim5) }
+		if (Dim5 != null) { if (dimmers) {dimmers?.setLevel(Dim5)} }
+			  
 	}
 }
