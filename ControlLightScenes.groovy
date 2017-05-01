@@ -533,11 +533,16 @@ def switch1Handler(evt){
 			if (Temp1) { slaves?.setColorTemperature(Temp1) 
 			      }
 		}
-		if (Dim1 != null) { 
-			    if (dimmers) {dimmers?.setLevel(Dim1)} }
+		if (Dim1 > 0) { 
+			    if (dimmers) {
+                dimmers.on()
+        		dimmers.setLevel(Dim1)} } 
 	} else {
 		if (Temp1) { slaves?.setColorTemperature(Temp1) }
-		if (Dim1 != null) { if (dimmers) {dimmers?.setLevel(Dim1)} }
+		if (Dim1 > 0) { if (dimmers) {
+        dimmers.on()
+        dimmers.setLevel(Dim1)} 
+        }
 			  
 	}
 }
@@ -554,11 +559,13 @@ def switch2Handler(evt){
 			if (Temp2) { slaves?.setColorTemperature(Temp2) 
 			      }
 		}
-		if (Dim2 != null) { 
-			    if (dimmers) {dimmers?.setLevel(Dim2)} }
+		if (Dim2 > 0) { 
+			    if (dimmers) {dimmers.on()
+                dimmers.setLevel(Dim2)} }
 	} else {
 		if (Temp2) { slaves?.setColorTemperature(Temp2) }
-		if (Dim2 != null) { if (dimmers) {dimmers?.setLevel(Dim2)} }
+		if (Dim2 > 0) { if (dimmers) {dimmers.on()
+        dimmers.setLevel(Dim2)} }
 			  
 	}
 }
@@ -575,11 +582,13 @@ def switch3Handler(evt){
 			if (Temp3) { slaves?.setColorTemperature(Temp3) 
 			      }
 		}
-		if (Dim3 != null) { 
-			    if (dimmers) {dimmers?.setLevel(Dim3)} }
+		if (Dim3 > 0) { 
+			    if (dimmers) {dimmers.on()
+                dimmers.setLevel(Dim3)} }
 	} else {
 		if (Temp3) { slaves?.setColorTemperature(Temp3) }
-		if (Dim3 != null) { if (dimmers) {dimmers?.setLevel(Dim3)} }
+		if (Dim3 > 0) { if (dimmers) {dimmers.on()
+        dimmers.setLevel(Dim3)} }
 			  
 	}
 }
@@ -596,11 +605,13 @@ def switch4Handler(evt){
 			if (Temp4) { slaves?.setColorTemperature(Temp4) 
 			      }
 		}
-		if (Dim4 != null) { 
-			    if (dimmers) {dimmers?.setLevel(Dim4)} }
+		if (Dim4 > 0) { 
+			    if (dimmers) {dimmers.on()
+                dimmers.setLevel(Dim4)} }
 	} else {
 		if (Temp4) { slaves?.setColorTemperature(Temp4) }
-		if (Dim4 != null) { if (dimmers) {dimmers?.setLevel(Dim4)} }
+		if (Dim4 > 0) { if (dimmers) {dimmers.on()
+        dimmers.setLevel(Dim4)} }
 			  
 	}
 }
@@ -617,11 +628,13 @@ def switch5Handler(evt){
 			if (Temp5) { slaves?.setColorTemperature(Temp5) 
 			      }
 		}
-		if (Dim5 != null) { 
-			    if (dimmers) {dimmers?.setLevel(Dim5)} }
+		if (Dim5 > 0) { 
+			    if (dimmers) {dimmers.on()
+                dimmers.setLevel(Dim5)} }
 	} else {
 		if (Temp5) { slaves?.setColorTemperature(Temp5) }
-		if (Dim5 != null) { if (dimmers) {dimmers?.setLevel(Dim5)} }
+		if (Dim5 > 0) { if (dimmers) {dimmers.on()
+        dimmers.setLevel(Dim5)} }
 			  
 	}
 }
