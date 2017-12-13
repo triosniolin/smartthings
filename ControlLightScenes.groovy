@@ -14,10 +14,10 @@
  *
  */
 definition(
-    name: "Control Light Scenes",
+    name: "Buttons Control Light Scenes",
     namespace: "triosniolin",
     author: "Will Cole",
-    description: "Using switches, control scenes for light(s).",
+    description: "Using buttons, control scenes for light(s).",
     category: "Convenience",
     iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
     iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
@@ -69,11 +69,16 @@ def page2() {
 	if (scenes > i) {
 	dynamicPage(name: "page2", title: "Select Scene $i", nextPage: "page3") {
             section("Scene $i") {
-                input "switch$i", "capability.switch", 
+                input "switch$i", "capability.button", 
                     multiple: false, 
-                    title: "Switch To Enable Scene $i", 
+                    title: "Button to Enable Scene $i", 
                     required: true
+				input "type$i", "bool",
+					title: "Short press?",
+					defaultValue: true
+				
             }
+
             if (slaves) {
             section("Scene $i Color Temp") {
                 input "Temp$i", "number", 
@@ -112,10 +117,13 @@ def page2() {
    } else {
     dynamicPage(name: "page2", title: "Select Scene $i", nextPage: "lastpage") {
             section("Scene $i") {
-                input "switch$i", "capability.switch", 
+                input "switch$i", "capability.button", 
                     multiple: false, 
-                    title: "Switch To Enable Scene $i", 
+                    title: "Button to Enable Scene $i", 
                     required: true
+					input "type$i", "bool",
+					title: "Short press?",
+					defaultValue: true
             }
             if (slaves) {
             section("Scene $i Color Temp") {
@@ -159,10 +167,13 @@ def page3() {
 if (scenes > i) {
 	dynamicPage(name: "page3", title: "Select Scene $i", nextPage: "page4") {
             section("Scene $i") {
-                input "switch$i", "capability.switch", 
+                input "switch$i", "capability.button", 
                     multiple: false, 
-                    title: "Switch To Enable Scene $i", 
+                    title: "Button to Enable Scene $i", 
                     required: true
+					input "type$i", "bool",
+					title: "Short press?",
+					defaultValue: true
             }
             if (slaves) {
             section("Scene $i Color Temp") {
@@ -202,10 +213,13 @@ if (scenes > i) {
    } else {
     dynamicPage(name: "page3", title: "Select Scene $i", nextPage: "lastpage") {
             section("Scene $i") {
-                input "switch$i", "capability.switch", 
+                input "switch$i", "capability.button", 
                     multiple: false, 
-                    title: "Switch To Enable Scene $i", 
+                    title: "Button to Enable Scene $i", 
                     required: true
+					input "type$i", "bool",
+					title: "Short press?",
+					defaultValue: true
             }
             if (slaves) {
             section("Scene $i Color Temp") {
@@ -249,10 +263,13 @@ def page4() {
 if (scenes > i) {
 	dynamicPage(name: "page4", title: "Select Scene $i", nextPage: "page5") {
             section("Scene $i") {
-                input "switch$i", "capability.switch", 
+                input "switch$i", "capability.button", 
                     multiple: false, 
-                    title: "Switch To Enable Scene $i", 
+                    title: "Button to Enable Scene $i", 
                     required: true
+					input "type$i", "bool",
+					title: "Short press?",
+					defaultValue: true
             }
             if (slaves) {
             section("Scene $i Color Temp") {
@@ -292,10 +309,13 @@ if (scenes > i) {
    } else {
         dynamicPage(name: "page4", title: "Select Scene $i", nextPage: "lastpage") {
             section("Scene $i") {
-                input "switch$i", "capability.switch", 
+                input "switch$i", "capability.button", 
                     multiple: false, 
-                    title: "Switch To Enable Scene $i", 
+                    title: "Button to Enable Scene $i", 
                     required: true
+					input "type$i", "bool",
+					title: "Short press?",
+					defaultValue: true
             }
             if (slaves) {
             section("Scene $i Color Temp") {
@@ -339,10 +359,13 @@ def page5() {
 	if (scenes > i) {
         dynamicPage(name: "page5", title: "Select Scene $i", nextPage: "page6") {
             section("Scene $i") {
-                input "switch$i", "capability.switch", 
+                input "switch$i", "capability.button", 
                     multiple: false, 
-                    title: "Switch To Enable Scene $i", 
+                    title: "Button to Enable Scene $i", 
                     required: true
+					input "type$i", "bool",
+					title: "Short press?",
+					defaultValue: true
             }
             if (slaves) {
             section("Scene $i Color Temp") {
@@ -382,10 +405,13 @@ def page5() {
        } else {
         dynamicPage(name: "page5", title: "Select Scene $i", nextPage: "lastpage") {
                 section("Scene $i") {
-                    input "switch$i", "capability.switch", 
+                    input "switch$i", "capability.button", 
                         multiple: false, 
-                        title: "Switch To Enable Scene $i", 
+                        title: "Button to Enable Scene $i", 
                         required: true
+						input "type$i", "bool",
+					title: "Short press?",
+					defaultValue: true
                 }
                 if (slaves) {
             section("Scene $i Color Temp") {
@@ -428,10 +454,13 @@ def page6() {
 	def i = 5
         dynamicPage(name: "page6", title: "Select Scene $i", nextPage: "lastpage") {
             section("Scene $i") {
-                input "switch$i", "capability.switch", 
+                input "switch$i", "capability.button", 
                     multiple: false, 
-                    title: "Switch To Enable Scene $i", 
+                    title: "Button to Enable Scene $i", 
                     required: true
+					input "type$i", "bool",
+					title: "Short press?",
+					defaultValue: true
             }
             if (slaves) {
             section("Scene $i Color Temp") {
@@ -481,19 +510,39 @@ def lastpage() {
 def installed()
 {
 if (switch1) {
-subscribe (switch1, "switch.on", switch1Handler)
+	if (type1) {
+		subscribe (switch1, "button.pushed", switch1Handler)
+	} else {
+		subscribe (switch1, "button.held", switch1Handler)
+	}
 }
 if (switch2) {
-subscribe (switch2, "switch.on", switch2Handler)
+	if (type2) {
+		subscribe (switch2, "button.pushed", switch2Handler)
+	} else {
+		subscribe (switch2, "button.held", switch2Handler)
+	}
 }
 if (switch3) {
-subscribe (switch3, "switch.on", switch3Handler)
+	if (type3) {
+		subscribe (switch3, "button.pushed", switch3Handler)
+	} else {
+		subscribe (switch3, "button.held", switch3Handler)
+	}
 }
 if (switch4) {
-subscribe (switch4, "switch.on", switch4Handler)
+	if (type4) {
+		subscribe (switch4, "button.pushed", switch4Handler)
+	} else {
+		subscribe (switch4, "button.held", switch4Handler)
+	}
 }
 if (switch5) {
-subscribe (switch5, "switch.on", switch5Handler)
+if (type5) {
+		subscribe (switch5, "button.pushed", switch5Handler)
+	} else {
+		subscribe (switch5, "button.held", switch5Handler)
+	}
 }
 }
 
@@ -501,20 +550,41 @@ def updated()
 {
 	unsubscribe()
 if (switch1) {
-subscribe (switch1, "switch.on", switch1Handler)
+	if (type1) {
+		subscribe (switch1, "button.pushed", switch1Handler)
+	} else {
+		subscribe (switch1, "button.held", switch1Handler)
+	}
 }
 if (switch2) {
-subscribe (switch2, "switch.on", switch2Handler)
+	if (type2) {
+		subscribe (switch2, "button.pushed", switch2Handler)
+	} else {
+		subscribe (switch2, "button.held", switch2Handler)
+	}
 }
 if (switch3) {
-subscribe (switch3, "switch.on", switch3Handler)
+	if (type3) {
+		subscribe (switch3, "button.pushed", switch3Handler)
+	} else {
+		subscribe (switch3, "button.held", switch3Handler)
+	}
 }
 if (switch4) {
-subscribe (switch4, "switch.on", switch4Handler)
+	if (type4) {
+		subscribe (switch4, "button.pushed", switch4Handler)
+	} else {
+		subscribe (switch4, "button.held", switch4Handler)
+	}
 }
 if (switch5) {
-subscribe (switch5, "switch.on", switch5Handler)
+if (type5) {
+		subscribe (switch5, "button.pushed", switch5Handler)
+	} else {
+		subscribe (switch5, "button.held", switch5Handler)
+	}
 }
+
 	log.info "subscribed to all of switches events"
 }
 
